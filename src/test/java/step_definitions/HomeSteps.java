@@ -9,6 +9,7 @@ public class HomeSteps
     public void user_navigate_to_homepage() {
         // Write code here that turns the phrase above into concrete actions
         System.out.println("Nav to homepage");
+        System.out.println("Test");
     }
     @Then("User should see header as Comcast Business - Official Site")
     public void user_should_see_header_as_comcast_business_official_site() {
