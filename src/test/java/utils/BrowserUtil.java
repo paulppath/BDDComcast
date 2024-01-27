@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 import static java.lang.Thread.sleep;
 
 public class BrowserUtil
@@ -31,6 +33,14 @@ public class BrowserUtil
         driver.close();
         driver = null;
     }
+    public static void quitDriver()
+    {
+        if (driver != null)
+        {
+            driver.quit();
+            driver = null;
+        }
+    }
     private static void initializeDriver(String browser)
     {
         switch(browser)
@@ -48,6 +58,9 @@ public class BrowserUtil
                 driver = new InternetExplorerDriver();
                 break;
         }
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get(ConfigReader.readProperty("configuration.properties", "url"));
     }
     public static void switchToNewWindow(WebDriver driver)
     {
