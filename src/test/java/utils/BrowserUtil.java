@@ -18,7 +18,7 @@ public class BrowserUtil
 {
     private BrowserUtil(){}
     private static WebDriver driver;
-    public WebDriver getDriver()
+    public static WebDriver getDriver()
     {
         if (driver == null)
         {
@@ -173,6 +173,6 @@ public class BrowserUtil
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
-    
+
 
 }
