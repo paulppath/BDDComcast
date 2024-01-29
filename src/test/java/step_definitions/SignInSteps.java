@@ -1,6 +1,7 @@
 package step_definitions;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.SignInPage;
 import utils.BrowserUtil;
 
@@ -20,6 +21,19 @@ public class SignInSteps
                 break;
             default:
                 System.out.println("Invalid input!!!");
+        }
+    }
+
+    @When("User enter {string} text")
+    public void userEnterText(String text)
+    {
+        switch (text.toLowerCase())
+        {
+            case "email":
+                BrowserUtil.sendKeys(page.emailBox,text);
+                break;
+            default:
+                System.out.println("Invalid Input!!!");
         }
     }
 }
