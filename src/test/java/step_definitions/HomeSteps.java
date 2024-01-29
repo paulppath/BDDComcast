@@ -2,6 +2,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.HomePage;
 import utils.BrowserUtil;
 
@@ -20,8 +21,23 @@ public class HomeSteps
     @Then("User should see {string} Btn is displayed")
     public void userShouldSeeBtnIsDisplayed(String btn)
     {
-        BrowserUtil.assertTrue(page.signInBtn.isDisplayed());
-        BrowserUtil.closeDriver();
+        switch (btn.toLowerCase())
+        {
+            case "sing in":
+                BrowserUtil.assertTrue(page.signInBtn.isDisplayed());
+                break;
+            case "shop":
+                BrowserUtil.isDisplayed(page.shopNavBtn);
+                break;
+            case "enterprise solutions":
+                BrowserUtil.isDisplayed(page.enterpriseSolutionsNavBtn);
+                break;
+            case "support":
+                BrowserUtil.isDisplayed(page.supportNavBtn);
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
     }
     @Then("User should see header as {string}")
     public void userShouldSeeHeaderAs(String title)
@@ -29,7 +45,19 @@ public class HomeSteps
         // Write code here that turns the phrase above into concrete actions
         String actualTitle = BrowserUtil.getDriver().getTitle();
         BrowserUtil.assertEquals(actualTitle, title);
-        BrowserUtil.closeDriver();
+    }
+
+    @When("User click on {string} button")
+    public void userClickOnButton(String btn)
+    {
+        switch (btn.toLowerCase())
+        {
+            case "signin":
+                BrowserUtil.click(page.signInBtn);
+                break;
+            default:
+                System.out.println("Invalid input!!!");
+        }
     }
     // test for confclt
 }
