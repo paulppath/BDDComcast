@@ -13,4 +13,7 @@ public class SignInPage
     }
     @FindBy (xpath = "//button[@id='sign_in']")
     public WebElement continueBtn;
+    @FindBy (id = "user")
+    public WebElement emailBox;
+
 }

@@ -52,7 +52,7 @@ public class HomeSteps
     {
         switch (btn.toLowerCase())
         {
-            case "signin":
+            case "sign in":
                 BrowserUtil.click(page.signInBtn);
                 break;
             default:
