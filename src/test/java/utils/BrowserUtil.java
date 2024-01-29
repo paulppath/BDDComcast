@@ -81,7 +81,8 @@ public class BrowserUtil
                 if (i % 2 == 0) {
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black;" +
                             "border: 3px solid red; background: yellow");
-                        //TODO: Apply screenshot here
+                    if(ConfigReader.readProperty("configuration.properties", "takeScreenshots").equals("true"))
+                        ScreenShot.takeScreenshot(driver);
                 } else {
                     sleep(600);
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
@@ -157,8 +158,8 @@ public class BrowserUtil
     public static void isDisplayed(WebElement element)
     {
         //TODO: Apply report -> logInfo("Displayed at: ", element);
-        waitForElementVisibility(element);
         scrollIntoView(element);
+        waitForElementVisibility(element);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
@@ -173,7 +174,6 @@ public class BrowserUtil
     public static boolean isDisable(WebElement element)
     {
         //TODO: Apply report -> logInfo("Is disable at: ", element);
-
         scrollIntoView(element);
         highlightElement(element);
         if(element.isEnabled())
