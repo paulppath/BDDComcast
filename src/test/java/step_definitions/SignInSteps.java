@@ -2,6 +2,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.SignInPage;
 import utils.BrowserUtil;
 
@@ -20,7 +21,7 @@ public class SignInSteps
                 BrowserUtil.assertTrue(BrowserUtil.isEnable(page.continueBtn));
                 break;
             default:
-                System.out.println("Invalid input!!!");
+                Assert.fail("Invalid Input!!!");
         }
     }
 
@@ -33,7 +34,8 @@ public class SignInSteps
                 BrowserUtil.sendKeys(page.emailBox,text);
                 break;
             default:
-                System.out.println("Invalid Input!!!");
+                Assert.fail("Invalid Input!!!");
         }
     }
+
 }
