@@ -62,7 +62,7 @@ public class BrowserUtil
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(ConfigReader.readProperty("configuration.properties", "url"));
     }
-    public static void switchToNewWindow(WebDriver driver)
+    public static void switchToNewWindow()
     {
         for(String eachId : driver.getWindowHandles())
         {
@@ -81,8 +81,9 @@ public class BrowserUtil
                 if (i % 2 == 0) {
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black;" +
                             "border: 3px solid red; background: yellow");
-                    if(ConfigReader.readProperty("configuration.properties", "takeScreenshots").equals("true"))
-                        ScreenShot.takeScreenshot(driver);
+                    // TODO -> apply report screenshot here
+                    sleep(150);
+                    CucumberLogUtils.logInfo("WebElement" + element.toString(), true);
                 } else {
                     sleep(600);
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
@@ -117,7 +118,9 @@ public class BrowserUtil
 
     public static void sendKeys(WebElement element, String inputText)
     {
+
         // TODO: Apply report -> log info ("Entered the text ", element);
+        CucumberLogUtils.logInfo("Entered the text ", true);
         waitForClickAbility(element);
         scrollIntoView(element);
         element.sendKeys(inputText);
@@ -143,16 +146,20 @@ public class BrowserUtil
     {
         // TODO : Apply report -> logInfo("Expected: " + expected);
         // TODO : Apply report -> logInfo("Actual: " + actual);
+        CucumberLogUtils.logInfo("Expected: " + expected, false);
+        CucumberLogUtils.logInfo("Actual: " + actual, false);
         Assert.assertEquals(actual, expected);
     }
     public static void assertFalse(boolean result)
     {
         // TODO : Apply report -> logInfo("Expected: + result);
+        CucumberLogUtils.logInfo("Expected: " + result, false);
         Assert.assertFalse(result);
     }
     public static void assertTrue(boolean result)
     {
         // TODO : Apply report -> logInfo("Expected: + result);
+        CucumberLogUtils.logInfo("Expected: " + result, false);
         Assert.assertTrue(result);
     }
     public static void isDisplayed(WebElement element)

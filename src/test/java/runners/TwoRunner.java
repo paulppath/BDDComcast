@@ -8,16 +8,16 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                "html:target/report.html",
-                "json:target/cucumber-reports/cucumber.json",
+                "html:target/report2.html",
+                "json:target/cucumber-reports/cucumber2.json",
                 "rerun:target/rerun.txt"
         },
         features = "src/test/resources/features",
         glue = "step_definitions",
         stepNotifications = true,
         dryRun = false
-        ,tags = "@US003"
+        ,tags = "@US0022"
 //        ,tags = "@smoke and @US001"
 )
-public class CukesRunner {
+public class TwoRunner {
 }
